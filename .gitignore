@@ -1,23 +1,203 @@
-# Compiled class file
-*.class
 
-# Log file
-*.log
+/**
+ * Make Your Own Adventure 2, The Prequel 
+ *
+ * @byepez
+ * 1/9/19 - 1/22/19
+ */
+import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
+public class MakeYourOwnAdventureProject
+{
+    public static void main()
+    {
+        Scanner in = new Scanner(System.in);
+        
+       
+        System.out.println("Welcome to Make Your Own Adventure 2! Please choose a moral path to take!");
+        System.out.println("1 for good, 2 for evil, 3 for neutral");
+        // different stories and outcomes depending on moral choice
+        //prompt for input
+        double monsterChance = Math.random() * 100; // random monster battle chance
+        double hitChance = Math.random() * 50; // random multiple hit chance for speed character
+        double monsterAttack = Math.random() * 200;//random dodge chance for the speed 
+        //all variables that have a random chance
+        double monsterHealth = 100;
+        
+        int answer1 = in.nextInt();
+        
+        if(answer1 == 1)
+        {
+            System.out.println("You chose good! Pick a stat that you will excel at!");
+            
+            System.out.println("1 for fast,chance to land multiple hits on enemies however");
+            System.out.println(", you'll have reduced health and damage, but you'll have a dodge chance and multiple hit chance");
+            System.out.println("2 for tank, your character has the highest hp out of all the classes");
+            System.out.println("3 for damage, your character will have the most damage out of all the classes");
+            
+            int answer2 = in.nextInt();
+            
+            if(answer2 == 1)
+            {
+                System.out.println("Fast character picked.");
+                int damage = 7;
+                int health = 15;
+            }
+            else if(answer2 == 2)
+            {
+                System.out.println("Tank character picked.");
+                int damage = 10;
+                int health = 50;
+            }
+            else if(answer2 == 3)
+            {
+                System.out.println("Damage character picked.");
+                int damage = 20;
+                int health = 30;// program not able to reference these ints?
+            }
+            
+            if(answer2 == 1)
+            {
+                System.out.println("it's your first day in the village, you hear a woman screaming for help, and you decide to investigate, she says she lost her baby, do you search:");
+                System.out.println("Around the village square, choose 1");
+                System.out.println("Around the edge of the village, choose 2");
+                
+                int answer3 = in.nextInt();
+                
+                if(answer3 == 1)
+                {
+                    System.out.println("You investigate around the village square, talking to various people to see if you can find some clues, one mentions that there were some gangly looking fellows around the edge of the town, "+
+                    "so you head there.");
+                    if(monsterChance < 50)
+                    {
+                        System.out.println("You are suddenly attacked by a monster and you must stand and fight.");
+                        if(answer2 == 1)
+                        {
+                             System.out.println("1 for attack, 2 for defend, 3 for run");
+                             int answer4 = in.nextInt();
+                             if(answer4 == 1)
+                             {
+                               
+                               if(hitChance < 25)
+                               {
+                                   monsterHealth = monsterHealth - 21; // 7 * 3
+                                   System.out.println("You landed multiplie hits! The monster's health is now " + monsterHealth);
+                                    
+                                   if(monsterAttack < 150)
+                                   {
+                                     int health = 15 - 5; // for some reason it's unable to reference the health int
+                                     System.out.println("Your health is now " + health);
+                                   }
+                               }
+                               else
+                               {
+                                 monsterHealth = monsterHealth - 7;
+                                 System.out.println("You attacked the monster, its health is now " + monsterHealth); 
+                                 
+                                 System.out.println("1 to keep attacking, 2 for defend, 3 for run");
+                               }
+                               if(answer4 == 2)
+                               {
+                                 System.out.println("You block the incoming attack and take no damage.");  
+                               }
+                               if(answer4 == 3) 
+                               {
+                                  System.out.println("You try to run away, the monster stabs you in the back, killing you");
+                                  System.out.println("Game over.");
+                               }
+                             }
+                        }
+                    }
+                    else if(monsterChance > 50)
+                    {
+                        System.out.println("You make it to the edge of the village without incident.");
+                        System.out.println("You notices some ruffians doing some ruffianing, you quickly run up and inquire if they have seen anything suspicious, they pull a gun on you.");
+                        System.out.println("Do you:");
+                        System.out.println("Try to disarm the man with the gun? Enter 1.");
+                        System.out.println("Run away? Enter 2.");
+                        
+                        int answer5 = in.nextInt();
+                        
+                        if(answer5 == 1)
+                        {
+                            if(monsterAttack < 150)
+                            {
+                                System.out.println("You successfully, disarm the man, take out the ruffians, and save the baby, you win.");
+                            }
+                            else
+                            {
+                            System.out.println("They shoot you in the face, that's how mafia works");
+                            }
+                        }
+                        else
+                        {
+                           System.out.println("They shoot you in the back, that's how mafia works"); 
+                        }
+                    }
+                    
+                }
+            }
+        }
+        else if(answer1 == 2)
+        {
+            System.out.println("You chose evil! Pick a stat that you will excel at!");
+            
+            System.out.println("1 for fast,chance to land multiple hits on enemies however");
+            System.out.println(", you'll have reduced health and damage, however, but you'll have a dodge chance and multiple hit chance");
+            System.out.println("2 for tank, your character has the highest hp out of all the classes");
+            System.out.println("3 for damage, your character will have the most damage out of all the classes");
+            int answer2 = in.nextInt();
+            
+            if(answer2 == 1)
+            {
+                System.out.println("Fast character picked.");
+                System.out.println("Now that you're evil, you're filled with the overwhelming urge to t-pose,1 for yes, 2 for no");
+                int answer3 = in.nextInt();
+                if(answer3 == 1)
+                {
+                    System.out.println("You t-pose, subscribe to pewdiepie");
+                }
+                else
+                {
+                    System.out.println("You die, how could you do this.");
+                }
+            }
+            else if(answer2 == 2)
+            {
+                System.out.println("Tank character picked.");
+            }
+            else if(answer2 == 3)
+            {
+                System.out.println("Damage character picked.");
+            }
+        }
+        else if(answer1 == 3)
+        {
+            System.out.println("You chose neutral! Pick a stat that you will excel at!");
+            
+            System.out.println("1 for fast,chance to land multiple hits on enemies however");
+            System.out.println(", you'll have reduced health and damage, however, but you'll have a dodge chance and multiple hit chance");
+            System.out.println("2 for tank, your character has the highest hp out of all the classes");
+            System.out.println("3 for damage, your character will have the most damage out of all the classes");
+            int answer2 = in.nextInt();
+            
+            if(answer2 == 1)
+            {
+                System.out.println("Fast character picked.");
+            }
+            else if(answer2 == 2)
+            {
+                System.out.println("Tank character picked.");
+            }
+            else if(answer2 == 3)
+            {
+                System.out.println("Damage character picked.");
+            }
+        }
+        //these 3 paths will contain practically all of the program
+    }
+}
 
-# BlueJ files
-*.ctxt
+    
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
